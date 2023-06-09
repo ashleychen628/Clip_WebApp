@@ -53,5 +53,14 @@
     "descriptions": [
       "a cup of coffee on a saucer"
     ]
+  },
+  "f": {
+    "setName": "f",
+    "descriptions": [
+      "a page of text about segmentation",
+      "a rocket standing on a launchpad",
+      "a person looking at a camera on a tripod",
+      "a cup of coffee on a saucer"
+    ]
   }
 }
