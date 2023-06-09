@@ -1,6 +1,7 @@
 # Clip_WebApp
 
 ## Initial Setup
+
 ```
 // 1. Set up Backend
 // Create a virtual environment
@@ -16,9 +17,10 @@ $ pwd
 .../Clip_WebApp/clip
 
 $npm install
-``` 
+```
 
 ## Start the project
+
 ```
 // 1. Start backend server
 $ pwd
@@ -32,4 +34,3 @@ $ pwd
 
 $ npm run start
 ```
-
