@@ -27,9 +27,9 @@ class UploadDisplayImage extends React.Component {
             let labelProbs = this.props.labelProbs
             var res = ""
             if (this.props.labelProbs.length > 0) {
-                this.props.descriptions.map((el, id) => {
-                    res = res + el["text"] + ": " + labelProbs[index][id] + ", ";
-                })
+                this.props.descriptions.map((el, id) => (
+                    res = res + el["text"] + ": " + labelProbs[index][id] + ", "
+                ))
             }
 
             return (

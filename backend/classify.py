@@ -1,4 +1,4 @@
-from flask import Flask, flash, request, redirect, make_response, url_for, session, jsonify
+from flask import Flask, request
 from flask_cors import CORS
 from collections import OrderedDict
 from werkzeug.utils import secure_filename
@@ -7,7 +7,6 @@ import glob
 import os
 import logging
 import json
-import shutil
 
 app = Flask(__name__)
 CORS(app, resources={"/*": {"origin": "http://localhost:3000"}})
@@ -148,6 +147,18 @@ def getDescriptions(setName):
     des = json.load(open('files/descriptionSet.json'))[setName]["descriptions"]
 
     return {"descriptions": des}
+
+@app.route("/cleanResult", methods=["POST"])
+def cleanResult():
+    """Clean up the result images."""
+
+    filelist = glob.glob(os.path.join(RESULT_IMAGE_PATH, "classify_Images", "*"))
+    for f in filelist:
+        # print(f)
+        os.remove(f)
+    
+    return {"status": "cleaned up result_image"}
+    
 
 @app.route("/getProb/<setName>", methods=["GET"])
 def getProbabilities(setName):

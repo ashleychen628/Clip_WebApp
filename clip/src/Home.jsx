@@ -45,8 +45,7 @@ class Home extends React.Component {
   }
 
   setImageList(num) {
-    console.log("called" + this.state.hasImage)
-
+    // console.log("called" + this.state.hasImage)
     this.setState({
       hasImage: num
     })
@@ -179,8 +178,7 @@ class Home extends React.Component {
   }
 
   handleClickSet(setName) {
-    console.log("hi")
-    const data = { "setName": setName };
+    
     fetch('http://127.0.0.1:5000/getSet/'+setName, {
       method: 'GET',
     })
@@ -188,9 +186,9 @@ class Home extends React.Component {
         response.json()
           .then((body) => {
             var des = []
-            body["descriptions"].map((el, id) => {
+            body["descriptions"].map((el, id) => (
                 des.push({"text": el, "id": id.toString()})
-            })
+            ))
             console.log(des)
               this.setState({
                 descriptions: des,
@@ -218,7 +216,7 @@ class Home extends React.Component {
   displayDescription() {
     const showSet = []
     let setList = this.state.setList;
-      setList.map((setName, el) => {
+      setList.map((setName, el) => (
       showSet.push(
           <tr id="each set name" key={el}>
               <td key={el}>
@@ -227,7 +225,7 @@ class Home extends React.Component {
               </td>
           </tr>
       )
-      })
+      ))
 
       return showSet
     }
@@ -237,9 +235,9 @@ class Home extends React.Component {
   render() {
     let setName = this.state.setName;
     let duplicateName = false;
-    // console.log("rendered" + this.state.setList.length)
+    // console.log("rendered" + this.state.descriptions.length)
     // console.log("set names: " + this.state.setList[0])
-    if (this.state.setList.length !== 0 && this.state.setList.includes(this.state.newSetName)) { 
+    if ((this.state.setList.length !== 0 && this.state.setList.includes(this.state.newSetName)) || this.state.descriptions.length < 5) { 
       duplicateName = true;
     }
 

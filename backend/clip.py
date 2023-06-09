@@ -103,6 +103,9 @@ class Clip:
 
             # similarity = text_features.cpu().numpy() @ image_features.cpu().numpy().T
             text_probs = (100.0 * image_features @ text_features.T).softmax(dim=-1)
+            # t = 5
+            # if len(self.descriptions) < 5:
+            #     t = 
             top_probs, top_labels = text_probs.cpu().topk(5, dim=-1)
         
         plt.figure(figsize=(16, 16))
@@ -131,5 +134,5 @@ class Clip:
         
 
         return {
-            "classify_location":"classifications.png"
+            "classify_location": self.setName + ".png"
         }

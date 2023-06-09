@@ -9,10 +9,7 @@ export default function Classify(props) {
     const [description, setDes] = useState();
     const [isPending, setIsPending] = useState(true);
     const [resImage, setResImage] = useState();
-    // const [hasImage, setHasImage] = useState(0);
     const [disableBt, SetDisableBt] = useState(false);
-    
-    // let hasImage = 0;
     
     useEffect(() => {
         fetch('http://127.0.0.1:5000/getDescriptions/' + setName)
@@ -29,7 +26,7 @@ export default function Classify(props) {
     function displayDescription() {
         const showDes = []
         let desList = description
-        desList.map((des, el) => {
+        desList.map((des, el) => (
         showDes.push(
             <tr id="each description" key={el}>
                 <td key={el}>
@@ -37,7 +34,7 @@ export default function Classify(props) {
                 </td>
             </tr>
         )
-        })
+        ))
 
         return showDes
     }
@@ -52,6 +49,16 @@ export default function Classify(props) {
             })
     }
 
+    function cleanResultImg(e) {
+        fetch('http://127.0.0.1:5000/cleanResult', {method: "POST"})
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data)
+            })
+    }
+
     function setImageList(num) {
         if (num === 0) {
             SetDisableBt(true);
@@ -61,10 +68,10 @@ export default function Classify(props) {
         }
     
     }
-
+    
     return (
         // <ClassifyImg setName={setName} descriptions={description} />
-        
+       
         <div className="Classification">    
 
             <div className="Description_section">
@@ -85,7 +92,7 @@ export default function Classify(props) {
             <div className="view_c_result">
                 <button onClick={(e) => { handleClassify(e) }} disabled={disableBt}>View Classification Result</button>
             </div>
-            <button className="back"><Link to={`/`}>Back</Link></button>
+            <button className="back" onClick={(e) => { cleanResultImg(e) }}><Link to={`/`}>Back</Link></button>
         </div>
     )
 }
