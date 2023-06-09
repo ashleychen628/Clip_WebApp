@@ -1,0 +1,30 @@
+.display_description,
+    .e-listview,
+        .e-list-item, 
+            .h{
+                color: #343A40;
+                font-family: "Inter", Helvetica;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0; 
+                top: 14px;
+                width: 100%;
+            }
+
+/* .display_description,
+    .des_title
+        .h{
+            color: #343A40;
+                font-family: "Inter", Helvetica;
+                font-size: 20px;
+                font-weight: 600;
+        }
+        .bt_edit{
+            color:#343A40;
+            width: 30px;
+            height: 30px;
+        } */
+        
+.circle-add:before {
+    content: '\e768';
+}

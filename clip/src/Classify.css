@@ -1,0 +1,24 @@
+.Classify {
+    display: flex;
+}
+
+/* .Description_section,
+    .h {
+        color: #343A40;
+        font-family: "Inter", Helvetica;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0;
+        top: 14px;
+        width: 100%;
+    } */
+.Classification,
+.Description_section {
+    width: 20%;
+    float: left;
+}
+
+/* .view_c_result {
+    width: 10%;
+    float: right;
+} */

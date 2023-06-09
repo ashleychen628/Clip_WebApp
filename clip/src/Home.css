@@ -1,0 +1,27 @@
+.App {
+  display: flex;
+}
+  .Description_section,
+    .des_title,
+      .h {
+        color: #343A40;
+        font-family: "Inter", Helvetica;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+
+.Description_section {
+   width: 20%;
+   float: left;
+ }
+
+.Result_section {
+  width: 10%;
+  float: right;
+}
+
+
+
+
+
