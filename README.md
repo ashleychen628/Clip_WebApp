@@ -46,4 +46,6 @@ $ npm run start
         |-- calc_probabilities
         |-- classify_Images
 ```
-### I also put 8 pictures for testing in backend/pics_for_trials
+I also put 8 pictures for testing in backend/pics_for_trials
+
+A user flow document: https://docs.google.com/document/d/1n6l46ZTC0VrWBasEWZL2ujBpqH6rFOzJlBHT5boXdnM/edit?usp=sharing
