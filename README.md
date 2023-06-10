@@ -34,3 +34,16 @@ $ pwd
 
 $ npm run start
 ```
+
+## About some Folders
+
+```
+|-- src
+    |-- uploaded_Images (Images uploaded by the user)
+        |-- calc_probabilities
+        |-- classify_Images
+    |-- result_Images (Results save to this folder)
+        |-- calc_probabilities
+        |-- classify_Images
+```
+### I also put 8 pictures for testing in backend/pics_for_trials
