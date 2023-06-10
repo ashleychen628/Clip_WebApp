@@ -118,6 +118,7 @@ class Home extends React.Component {
 
   handleAddSet(e) {
     e.preventDefault();
+
     let name = e.target.setName.value;
 
     this.setState(prevState => ({
@@ -154,6 +155,7 @@ class Home extends React.Component {
 
   handleClearAll(e) {
     e.preventDefault();
+    
     console.log("clear all")
     this.setState({
       descriptions: []
@@ -161,7 +163,11 @@ class Home extends React.Component {
   }
 
   handleDeleteSet(setName) {
+
     const data = { "setName": setName };
+    let name = this.state.setName;
+    if (this.state.setName === setName) { name = ""; }
+
     fetch('http://127.0.0.1:5000/deleteSet', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -171,7 +177,8 @@ class Home extends React.Component {
         response.json()
           .then((body) => {
               this.setState({
-                setList: this.state.setList.filter(el => el !== setName)
+                setList: this.state.setList.filter(el => el !== setName),
+                setName: name
               })
           })
       });
@@ -215,6 +222,7 @@ class Home extends React.Component {
 
   displayDescription() {
     const showSet = []
+    
     let setList = this.state.setList;
       setList.map((setName, el) => (
       showSet.push(

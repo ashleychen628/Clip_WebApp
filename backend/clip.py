@@ -8,6 +8,7 @@ import matplotlib
 import numpy as np
 from open_clip import tokenizer
 from torchvision.datasets import CIFAR100
+import time
 # tokenizer = open_clip.get_tokenizer('ViT-B-32')
 tokenizer.tokenize("Hello World!")
 my_path = os.path.abspath(__file__)
@@ -131,8 +132,19 @@ class Clip:
         plt.tight_layout()
         plt.savefig(result_location)
 
+        fileName = os.path.join(RESULT_IMAGE_PATH + "/classify_Images", self.setName+".png")
+        while not os.path.exists(fileName):
+            print("wait...")
+            time.sleep(3)
         
+        if os.path.isfile(fileName):
+            print("yes")
+            return {
+                "classify_location": self.setName + ".png"
+            }
+        else:
+            raise ValueError("%s isn't a file!" % fileName)
 
-        return {
-            "classify_location": self.setName + ".png"
-        }
+        # return {
+        #     "classify_location": self.setName + ".png"
+        # }

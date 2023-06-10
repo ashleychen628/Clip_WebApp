@@ -9,7 +9,9 @@ import logging
 import json
 
 app = Flask(__name__)
-CORS(app, resources={"/*": {"origin": "http://localhost:3000"}})
+CORS(app, resources={"/*": {"origin": "http://localhost:3000/*"}})
+
+
 
 UPLOAD_FOLDER = '../clip/src/uploaded_Images/'
 RESULT_IMAGE_PATH = "../clip/src/result_Images/"
