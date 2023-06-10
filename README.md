@@ -12,6 +12,9 @@ $ python3 -m venv env
 // Activate a virtual environment
 $ source env/bin/activate
 
+// Install the package dependencies
+$ pip install -r requirements.txt
+
 // 2. Set up Frontend
 $ pwd
 .../Clip_WebApp/clip
