@@ -68,14 +68,14 @@ class Clip:
         plt.ylim([count + 0.5, -2])
 
         plt.title("Cosine similarity between text and image features", size=10)
-        result_location = os.path.join(RESULT_IMAGE_PATH + "/calc_probabilities", 'probabilities.png')
+        result_location = os.path.join(RESULT_IMAGE_PATH + "/calc_probabilities", self.setName)
 
         plt.tight_layout()
         plt.savefig(result_location)
         # print(text_probs)
         # TODO: add des set name
         return {
-            "result_location":"probabilities.png",
+            "result_location":self.setName + ".png",
             "label_probs": text_probs
         }
     

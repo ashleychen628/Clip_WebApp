@@ -29,7 +29,8 @@ class Home extends React.Component {
       labelProbs: [],
       hasImage: 0,
       setList: [],
-      newSetName: ""
+      newSetName: "",
+      isImageActive: false
     };
 
     this.setDescriptions = this.setDescriptions.bind(this);
@@ -42,6 +43,7 @@ class Home extends React.Component {
     this.displayDescription = this.displayDescription.bind(this);
     this.handleDeleteSet = this.handleDeleteSet.bind(this);
     this.handleClickSet = this.handleClickSet.bind(this);
+    this.handleVisualize = this.handleVisualize.bind(this);
   }
 
   setImageList(num) {
@@ -68,6 +70,7 @@ class Home extends React.Component {
       descriptions: this.state.descriptions.concat(data),
       setName: setName,
       labelProbs: labelProbs,
+      isImageActive: false
     })
   }
 
@@ -81,16 +84,12 @@ class Home extends React.Component {
       setName = ""
       labelProbs = []
     }
-    // this.setState({
-    //   descriptions: this.state.descriptions.filter(el => el.text !== text),
-    //   setName: setName,
-    //   labelProbs: labelProbs,
-    //   setList: this.state.setList.filter(el => el !== setName)
-    // })
+
     this.setState({
       descriptions: this.state.descriptions.filter(el => el.text !== text),
       setName: setName,
-      labelProbs: labelProbs
+      labelProbs: labelProbs,
+      isImageActive: false
     })
   }
 
@@ -107,7 +106,9 @@ class Home extends React.Component {
     .then((res) => {
       res.json()
         .then((data) => {
-          // console.log("result_location " + data["result_location"])
+          console.log("result_location " + data["result_location"])
+          console.log("setName" + setName)
+          console.log("label probs" + data["label_probs"])
           this.setState({
             resImage: data["result_location"],
             labelProbs: data["label_probs"]
@@ -162,6 +163,7 @@ class Home extends React.Component {
 
   handleDeleteSet(setName) {
     const data = { "setName": setName };
+    console.log(setName)
     fetch('http://127.0.0.1:5000/deleteSet', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -171,7 +173,9 @@ class Home extends React.Component {
         response.json()
           .then((body) => {
               this.setState({
-                setList: this.state.setList.filter(el => el !== setName)
+                setList: this.state.setList.filter(el => el !== setName),
+                setName: "",
+                labelProbs: []
               })
           })
       });
@@ -230,6 +234,13 @@ class Home extends React.Component {
       return showSet
     }
 
+  handleVisualize(e) {
+    e.preventDefault();
+    console.log("clicked")
+    this.setState({
+      isImageActive: true
+    })
+  }
 
 
   render() {
@@ -237,7 +248,9 @@ class Home extends React.Component {
     let duplicateName = false;
     // console.log("rendered" + this.state.descriptions.length)
     // console.log("set names: " + this.state.setList[0])
-    if ((this.state.setList.length !== 0 && this.state.setList.includes(this.state.newSetName)) || this.state.descriptions.length < 5) { 
+    if ((this.state.setList.length !== 0 && this.state.setList.includes(this.state.newSetName))
+      || this.state.descriptions.length < 5
+      || this.state.setName !== "") { 
       duplicateName = true;
     }
 
@@ -267,11 +280,20 @@ class Home extends React.Component {
         <div className="Result_section">
           {
             this.state.setName !== "" && this.state.hasImage !== 0 ?
-              <button className="result" onClick={(e) => { this.handleResult(e) }}><p>View Results</p></button>
+                <button className="result" onClick={(e) => { this.handleResult(e) }}><p>View Results</p></button>
               :
               <button className="result" onClick={(e) => { this.handleResult(e) }} disabled={true}><p>View Results</p></button>
           }
           {/* <img src={require(`./result_Images/calc_probabilities/probabilities.png`)} alt="img" /> */}
+          {
+            this.state.setName !== "" && this.state.hasImage !== 0 && this.state.labelProbs.length !== 0 ?
+              <div className="Result_bts">
+                <button className="result_pic" onClick={(e) => { this.handleVisualize(e) }}><p>Visualize</p></button>
+                {this.state.isImageActive && <img src={require(`./result_Images/calc_probabilities/${setName}.png`)} alt="img" />}
+              </div>
+              :
+              <button className="result_pic" onClick={(e) => { this.handleVisualize(e) }} disabled={true}><p>Visualize</p></button>
+          }
         </div>
 
         <div className="Export_section">

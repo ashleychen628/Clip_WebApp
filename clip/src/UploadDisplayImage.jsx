@@ -36,6 +36,7 @@ class UploadDisplayImage extends React.Component {
                 <div className="e-list-item" id={img}>
                     <img src={img} alt="img" />
                     <span className="e-icons e-delete-1" onClick={this.handleDeleteDes.bind(this)} />
+                    {/* {console.log("length " + this.props.labelProbs.length )} */}
                     <span>  {this.props.labelProbs.length > 0 && <p>{res}</p>} </span>
                 </div>
             );

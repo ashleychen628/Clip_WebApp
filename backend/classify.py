@@ -45,6 +45,10 @@ def deleteSet():
     with open(FILE_PATH, mode='w') as outfile:
         outfile.write(json.dumps(output, indent=2))
     
+    img = os.path.join(RESULT_IMAGE_PATH, 'calc_probabilities' ,setName+".png")
+    if os.path.isfile(img):
+        os.remove(img)
+    
     return {"status": "deleted set"}
 
 @app.route("/getSet/<setName>", methods=["GET"])
